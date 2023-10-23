@@ -1,15 +1,16 @@
 package guru.springframework.sfgpetclinic.model;
 
-import org.junit.jupiter.api.Test;
+import guru.springframework.sfgpetclinic.ModelTests;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PersonTest {
+class PersonTest implements ModelTests {
 
     @Test
     void groupedAssertions() {
         //given
-        Person person = new Person(1l, "Mostafa", "Mahdijoo");
+        Person person = new Person(1L, "Mostafa", "Mahdijoo");
         //then
         assertAll(
                 () -> assertEquals("Mostafa", person.getFirstName()),
@@ -20,7 +21,7 @@ class PersonTest {
     @Test
     void groupedAssertionMsgs() {
         //given
-        Person person = new Person(1l, "Mostafa", "Mahdijoo");
+        Person person = new Person(1L, "Mostafa", "Mahdijoo");
 
         //then
         assertAll("Test Props Set",
