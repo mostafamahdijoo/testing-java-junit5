@@ -1,6 +1,6 @@
 package guru.springframework.sfgpetclinic.services.map;
 
-import guru.springframework.sfgpetclinic.model.Speciality;
+import guru.springframework.sfgpetclinic.model.Specialty;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.SpecialtyService;
 import guru.springframework.sfgpetclinic.services.VetService;
@@ -29,10 +29,10 @@ public class VetMapService extends AbstractMapService<Vet, Long> implements VetS
     public Vet save(Vet object) {
 
         if (object.getSpecialities() != null && object.getSpecialities().size() > 0){
-            object.getSpecialities().forEach(speciality -> {
-                if(speciality.getId() == null){
-                    Speciality savedSpecialty = specialtyService.save(speciality);
-                    speciality.setId(savedSpecialty.getId());
+            object.getSpecialities().forEach(Specialty -> {
+                if(Specialty.getId() == null){
+                    Specialty savedSpecialty = specialtyService.save(Specialty);
+                    Specialty.setId(savedSpecialty.getId());
                 }
             });
         }

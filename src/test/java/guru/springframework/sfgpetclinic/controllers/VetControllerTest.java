@@ -5,7 +5,7 @@ import guru.springframework.sfgpetclinic.fauxspring.Model;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.SpecialtyService;
 import guru.springframework.sfgpetclinic.services.VetService;
-import guru.springframework.sfgpetclinic.services.map.SpecialityMapService;
+import guru.springframework.sfgpetclinic.services.map.SpecialtyMapService;
 import guru.springframework.sfgpetclinic.services.map.VetMapService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ class VetControllerTest implements ControllerTests {
 
     @BeforeEach
     void setUp() {
-        specialtyService = new SpecialityMapService();
+        specialtyService = new SpecialtyMapService();
         vetService = new VetMapService(specialtyService);
         vetController = new VetController(vetService);
 
