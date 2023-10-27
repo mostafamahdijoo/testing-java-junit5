@@ -13,6 +13,8 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -27,37 +29,61 @@ class VisitSDJpaServiceTest {
 
     @Test
     void findAll() {
+        //when
         Set<Visit> visitSet = visitSDJpaService.findAll();
-        assertThat(visitSet).size().isZero();
 
-        verify(visitRepository).findAll();
+        //then
+        assertThat(visitSet).size().isZero();
+        then(visitRepository).should().findAll();
+        //verify(visitRepository).findAll();
     }
 
     @Test
     void findById() {
+        //when
         visitSDJpaService.findById(1L);
-        verify(visitRepository).findById(anyLong());
+
+        //then
+        then(visitRepository).should().findById(anyLong());
+        //verify(visitRepository).findById(anyLong());
     }
 
     @Test
     void save() {
+        //given
         Visit visit = new Visit();
-        when(visitRepository.save(any(Visit.class))).thenReturn(visit);
+        given(visitRepository.save(any(Visit.class))).willReturn(visit);
+        //when(visitRepository.save(any(Visit.class))).thenReturn(visit);
+
+        //when
         Visit savedVisit = visitSDJpaService.save(visit);
+
+        //then
         assertThat(savedVisit).isNotNull();
-        verify(visitRepository).save(any(Visit.class));
+        then(visitRepository).should().save(any(Visit.class));
+        //verify(visitRepository).save(any(Visit.class));
     }
 
     @Test
     void delete() {
+        //given
         Visit visit = new Visit();
+
+        //when
         visitSDJpaService.delete(visit);
-        verify(visitRepository).delete(any(Visit.class));
+
+        //then
+        then(visitRepository).should().delete(any(Visit.class));
+        //verify(visitRepository).delete(any(Visit.class));
     }
 
     @Test
     void deleteById() {
+        //when
         visitSDJpaService.deleteById(1L);
-        verify(visitRepository).deleteById(anyLong());
+
+        //then
+        then(visitRepository).should().deleteById(anyLong());
+        //verify(visitRepository).deleteById(anyLong());
     }
 }
